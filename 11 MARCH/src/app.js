@@ -16,6 +16,14 @@ app.post("/notes",async(req,res)=>{
         note
     })
 })
+app.get("/notes",async(req,res)=>{
+    //find method jiten bhi notes hong ehmaare databse mein unn sabko read karegi aur reutrn akregi 
+    const notes=await noteModel.find()
+    res.status(200).json({
+        message:"Notes fetched succesfully",
+        notes
+    })
+})
 module.exports=app;
 
 
