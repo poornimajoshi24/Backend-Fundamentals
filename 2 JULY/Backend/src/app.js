@@ -3,6 +3,8 @@ const express = require("express"); //step1
 
 const app = express(); //step 2
 const noteModel = require("./models/note.model"); //step 22
+const cors=require("cors")//step 31
+app.use(cors());//step 32
 app.use(express.json()); //step 21
 
 /**
