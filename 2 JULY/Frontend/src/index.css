@@ -33,3 +33,10 @@ html{
   max-width: 20rem;
   color:white;
 }
+/* step 39 */
+.note-create-form{
+  display:flex;
+  gap: 1rem;
+  padding-block:1rem;
+  padding-inline:3rem;
+}

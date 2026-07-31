@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/HP1/Desktop/COHORT BACKEND/main'
+relocations:     []
+...

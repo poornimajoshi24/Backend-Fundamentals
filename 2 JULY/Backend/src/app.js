@@ -4,8 +4,10 @@ const express = require("express"); //step1
 const app = express(); //step 2
 const noteModel = require("./models/note.model"); //step 22
 const cors=require("cors")//step 31
+const path=require("path")//step 46
 app.use(cors());//step 32
 app.use(express.json()); //step 21
+app.use(express.static("./public"))//step 49
 
 /**
  * -POST/api/notes where name of API is /api/notes
@@ -79,5 +81,35 @@ app.patch("/api/notes/:id", async (req, res)=>{//step 30
         message:"note updated successfully"
     })
 })
+
+
+ 
+// //step 45 where asterisk denotes wild card which handles the api that we didnt create 
+// // that is agar user ne galati se unn api pe request kardi jo aapne create nhi kari hai then response define kar sakte hain hum ki output kya dikhaaana chahiye
+// // `aur hum send karva denge vo file jo backend folder k andar publuc folder mein index.html file hai `
+// app.use("*name",(req,res)=>{
+//   res.send("this is wild card routr")
+//   res.sendFile("./public/index.html")
+// })
+
+//step 47 tell express ki humne public folder ko static folder bana diya hai jahan se hum static files ko serve karenge
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+//step 48
+// `aur hum send karva denge vo file jo backend folder k andar publuc folder mein index.html file hai `
+//aur because humein package install kardiya hai tph ab hum relative path daal sakte hain 
+// __dirname is a variable which is available in nodejs and it gives the path upto src folder in baclend , ab uske andar index.html tak ka path humein khud define karna  padega 
+app.use("*name",(req,res)=>{
+  res.sendFile(path.join(__dirname,"..","public","index.html"))
+})
+
+// ❤️exclusive
+// ✅ Agar request /api/... ki hai aur route nahi mila →
+// 404 Not Found
+// ✅ Agar request frontend page (/profile, /dashboard, /settings) ki hai →
+// index.html
+// taaki React Router us route ko handle kar sake.
+
+
 
 module.exports = app; //step 3`
